@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-signal player_dead
+class_name Player
 
 @export var SPEED = 300.0
 var HEALTH = 100
@@ -9,6 +9,9 @@ var RESOURCES = {Global.RockType.DIRT: 0, Global.RockType.ROCK: 0, Global.RockTy
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _ready():
+	SignalBus.rock_destroyed.connect(_on_rock_destroyed)
 
 func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -27,16 +30,18 @@ func _physics_process(delta):
 
 	var collision = move_and_collide(velocity * delta)
 	if collision:
-		print("Player collided with ", collision.get_collider().name)
 		velocity = velocity.bounce(collision.get_normal())
 		
-		# TODO: if collision is with a block, take some damage, collect some resources (eventually convert these to signals)
-		if collision.get_collider().has_method("block_hit"):
-			collision.get_collider().block_hit()
+		if collision.get_collider() is Rock:
+			print("Player hit Rock")
+			var rock = collision.get_collider()
+			# TODO: replace with player damage variable
+			rock.hit(1)
+			HEALTH -= Global.DAMAGE_TABLE[rock.getRockType()]
+			if HEALTH <= 0:
+				print("Player dead")
+				SignalBus.player_dead.emit()
 
 func _on_rock_destroyed(rock_type: Global.RockType, resource_amount: int):
 	print("Player received rock destroyed for type ", rock_type, " and amount ", resource_amount)
 	RESOURCES[rock_type] += resource_amount
-	HEALTH -= Global.DAMAGE_TABLE[rock_type]
-	if HEALTH <= 0:
-		player_dead.emit()
