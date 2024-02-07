@@ -24,8 +24,6 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	# TODO: Fix rotation so player points towards mouse
-	#var mouse_dir = get_global_mouse_position() - global_position
-	#rotation = mouse_dir.angle()
 	look_at(get_global_mouse_position())
 
 	var collision = move_and_collide(velocity * delta)

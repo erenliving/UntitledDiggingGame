@@ -4,20 +4,19 @@ extends RigidBody2D
 class_name Rock
 
 @export var ROCK_TYPE: Global.RockType = Global.RockType.DIRT
-@export var RESOURCE_AMOUNT: int = 0
-var HEALTH = 1
+var RESOURCE_AMOUNT: int
+var HEALTH: int
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	HEALTH = Global.ROCK_HEALTH_TABLE[ROCK_TYPE]
+	setRockProperties(ROCK_TYPE)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func setRockProperties(new_rock_type: Global.RockType):
+	RESOURCE_AMOUNT = Global.RESOURCE_TABLE[new_rock_type]
+	HEALTH = Global.ROCK_HEALTH_TABLE[new_rock_type]
 
-func setRock(new_rock_type: Global.RockType, new_resource_amount: int):
+func setRockType(new_rock_type: Global.RockType):
 	ROCK_TYPE = new_rock_type
-	RESOURCE_AMOUNT = new_resource_amount
+	setRockProperties(new_rock_type)
 
 func getRockType():
 	return ROCK_TYPE
