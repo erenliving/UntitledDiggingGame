@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ktaca8isg8vw"]
+[gd_scene load_steps=4 format=3 uid="uid://ktaca8isg8vw"]
 
 [ext_resource type="PackedScene" uid="uid://c7wgkaipuwh5n" path="res://scenes/player.tscn" id="1_cakok"]
+[ext_resource type="PackedScene" uid="uid://r8ljkeio1qwg" path="res://scenes/rock.tscn" id="2_ny5hl"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_5t638"]
+
+[node name="Main" type="Node"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -200)
@@ -12,3 +15,16 @@ position = Vector2(0, -200)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5t638")
+
+[node name="Rock" parent="." instance=ExtResource("2_ny5hl")]
+
+[node name="Rock2" parent="." instance=ExtResource("2_ny5hl")]
+position = Vector2(71, 1)
+
+[node name="Rock3" parent="." instance=ExtResource("2_ny5hl")]
+position = Vector2(-127, -48)
