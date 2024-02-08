@@ -14,18 +14,25 @@ func _ready():
 	SignalBus.rock_destroyed.connect(_on_rock_destroyed)
 
 func get_input():
+	look_at(get_global_mouse_position())
+	
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = input_dir * SPEED
 
 func _physics_process(delta):
 	get_input()
+	
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		if position.y < 0:
+			velocity.y += gravity * delta
+		else:
+			velocity.y -= gravity * delta
+		if position.x < 0:
+			velocity.x += gravity * delta
+		else:
+			velocity.x -= gravity * delta
 	
-	# TODO: Fix rotation so player points towards mouse
-	look_at(get_global_mouse_position())
-
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		velocity = velocity.bounce(collision.get_normal())
