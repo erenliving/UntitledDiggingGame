@@ -28,6 +28,10 @@ func _physics_process(delta):
 			velocity.y += gravity * delta
 		else:
 			velocity.y -= gravity * delta
+		if position.x < 0:
+			velocity.x += gravity * delta
+		else:
+			velocity.x -= gravity * delta
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
