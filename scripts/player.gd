@@ -24,14 +24,8 @@ func _physics_process(delta):
 	
 	# Add the gravity.
 	if not is_on_floor():
-		if position.y < 0:
-			velocity.y += gravity * delta
-		else:
-			velocity.y -= gravity * delta
-		if position.x < 0:
-			velocity.x += gravity * delta
-		else:
-			velocity.x -= gravity * delta
+		# TODO: use gravity project setting
+		velocity += (Vector2.ZERO - position) * 10 * delta
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
