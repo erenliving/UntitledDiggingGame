@@ -5,7 +5,14 @@ class_name Player
 
 @export var SPEED = 300.0
 var HEALTH = 100
-var RESOURCES = {Global.RockType.DIRT: 0, Global.RockType.ROCK: 0, Global.RockType.IRON: 0}
+var RESOURCES = {
+	Global.RockType.DIRT: 0, 
+	Global.RockType.ROCK: 0, 
+	Global.RockType.IRON: 0, 
+	Global.RockType.COPPER: 0, 
+	Global.RockType.ALUMINUM: 0, 
+	Global.RockType.COBALT: 0
+}
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

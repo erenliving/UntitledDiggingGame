@@ -17,17 +17,18 @@ func build_level(level_definition):
 	core.set_position(origin)
 	core.radius = level_definition.core_radius
 	
-	var rock_offset = 0
+	var rock_offset = 5
 	var layer_offset = 10
 	var initial_radius = level_definition.core_radius + rock_offset
+	var current_layer = 0
 	for i in range(level_definition.rock_types.size()):
-		for j in range(level_definition.rock_layers[i]):
-			var current_radius = initial_radius + (j * layer_offset)
+		var rock_type = level_definition.rock_types[i]
+		var rock_layers = level_definition.rock_layers[i]
+		for j in range(rock_layers):
+			var current_radius = initial_radius + (current_layer * layer_offset)
+			print("Spawning rock type %s in layer %d at radius %d" % [rock_type, j, current_radius])
 			spawn_rocks_in_circle(20, current_radius, level_definition.rock_types[i], origin)
-	
-	#spawn_rocks_in_circle(20, 50, Global.RockType.IRON, origin)
-	#spawn_rocks_in_circle(30, 60, Global.RockType.ROCK, origin)
-	#spawn_rocks_in_circle(40, 70, Global.RockType.DIRT, origin)
+			current_layer += 1
 
 func spawn_rocks_in_circle(n: int, r: float, rock_type: Global.RockType, center = Vector2.ZERO):
 	var offset = 2.0 * PI / abs(n)
