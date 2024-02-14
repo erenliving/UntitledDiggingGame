@@ -9,6 +9,7 @@ radius = 50.0
 script = ExtResource("1_80qi3")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CircleShape2D_m7j3x")
