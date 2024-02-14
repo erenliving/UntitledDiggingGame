@@ -44,4 +44,7 @@ func spawn_rocks_in_circle(n: int, r: float, rock_type: Global.RockType, center 
 		var rock = rock_scene.instantiate() as Rock
 		add_child(rock)
 		rock.set_position(center + pos)
+		# Rotate the sprite to have its "bottom" point towards circle center
+		# Makes the circle look a bit better
+		rock.set_rotation(theta - (PI / 2))
 		rock.setRockType(rock_type)

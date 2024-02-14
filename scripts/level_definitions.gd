@@ -15,7 +15,7 @@ var level_1 = {
 }
 var level_2 = {
 	core_radius = 50,
-	rock_types = [
+	rock_layers = [
 		Global.RockType.COBALT, 
 		Global.RockType.COBALT, 
 		Global.RockType.COBALT,
