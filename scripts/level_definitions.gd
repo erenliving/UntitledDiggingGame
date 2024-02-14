@@ -4,13 +4,35 @@ var current_level = 1
 
 var level_1 = {
 	core_radius = 15,
-	rock_types = [Global.RockType.IRON, Global.RockType.ROCK, Global.RockType.DIRT],
-	rock_layers = [1, 2, 3]
+	rock_layers = [
+		Global.RockType.IRON, 
+		Global.RockType.ROCK, 
+		Global.RockType.ROCK, 
+		Global.RockType.DIRT, 
+		Global.RockType.DIRT, 
+		Global.RockType.DIRT
+	]
 }
 var level_2 = {
 	core_radius = 50,
-	rock_types = [Global.RockType.COBALT, Global.RockType.ALUMINUM, Global.RockType.COPPER],
-	rock_layers = [3, 5, 8]
+	rock_types = [
+		Global.RockType.COBALT, 
+		Global.RockType.COBALT, 
+		Global.RockType.COBALT,
+		Global.RockType.ALUMINUM,
+		Global.RockType.ALUMINUM,
+		Global.RockType.ALUMINUM,
+		Global.RockType.ALUMINUM,
+		Global.RockType.ALUMINUM,
+		Global.RockType.COPPER,
+		Global.RockType.COPPER,
+		Global.RockType.COPPER,
+		Global.RockType.COPPER,
+		Global.RockType.COPPER,
+		Global.RockType.COPPER,
+		Global.RockType.COPPER,
+		Global.RockType.COPPER
+	]
 }
 var levels = [
 	level_1,

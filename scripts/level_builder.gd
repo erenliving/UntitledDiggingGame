@@ -12,23 +12,29 @@ func _ready():
 func build_level(level_definition):
 	var origin = Vector2.ZERO
 	
+	spawn_core(origin, level_definition.core_radius)
+	spawn_rocks(origin, level_definition)
+
+func spawn_core(position: Vector2, radius: float):
 	var core = core_scene.instantiate() as Core
+	# Set radius property before adding as child so it's collision shape is correct size
+	core.radius = radius
 	add_child(core)
-	core.set_position(origin)
-	core.radius = level_definition.core_radius
-	
-	var rock_offset = 5
+	core.set_position(position)
+
+func spawn_rocks(center: Vector2, level_definition):
+	var first_layer_offset = 5
+	var initial_radius = level_definition.core_radius + first_layer_offset
 	var layer_offset = 10
-	var initial_radius = level_definition.core_radius + rock_offset
 	var current_layer = 0
-	for i in range(level_definition.rock_types.size()):
-		var rock_type = level_definition.rock_types[i]
-		var rock_layers = level_definition.rock_layers[i]
-		for j in range(rock_layers):
-			var current_radius = initial_radius + (current_layer * layer_offset)
-			print("Spawning rock type %s in layer %d at radius %d" % [rock_type, j, current_radius])
-			spawn_rocks_in_circle(20, current_radius, level_definition.rock_types[i], origin)
-			current_layer += 1
+	for i in range(level_definition.rock_layers.size()):
+		var rock_type = level_definition.rock_layers[i]
+		var current_radius = initial_radius + (i * layer_offset)
+		var current_circumference = 2 * PI * current_radius
+		# Opt to round up on number of objects here, prefer to have some overlap over some gaps
+		var num_rocks = ceil(current_circumference / 10)
+		spawn_rocks_in_circle(num_rocks, current_radius, rock_type, center)
+		current_layer += 1
 
 func spawn_rocks_in_circle(n: int, r: float, rock_type: Global.RockType, center = Vector2.ZERO):
 	var offset = 2.0 * PI / abs(n)
