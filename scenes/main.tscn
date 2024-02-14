@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ktaca8isg8vw"]
+[gd_scene load_steps=5 format=3 uid="uid://ktaca8isg8vw"]
 
 [ext_resource type="PackedScene" uid="uid://c7wgkaipuwh5n" path="res://scenes/player.tscn" id="1_cakok"]
 [ext_resource type="PackedScene" uid="uid://r8ljkeio1qwg" path="res://scenes/rock.tscn" id="2_ny5hl"]
 [ext_resource type="PackedScene" uid="uid://m7bnmhbg2uft" path="res://scenes/core.tscn" id="3_qulcl"]
+[ext_resource type="Script" path="res://scripts/level_builder.gd" id="4_ly1ea"]
 
 [node name="Main" type="Node"]
 
@@ -15,10 +16,7 @@ position = Vector2(0, -200)
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
-[node name="Rock" parent="." instance=ExtResource("2_ny5hl")]
-position = Vector2(115, -137)
-
-[node name="Rock2" parent="." instance=ExtResource("2_ny5hl")]
-position = Vector2(-127, -48)
-
-[node name="Core" parent="." instance=ExtResource("3_qulcl")]
+[node name="LevelBuilder" type="Node" parent="."]
+script = ExtResource("4_ly1ea")
+core_scene = ExtResource("3_qulcl")
+rock_scene = ExtResource("2_ny5hl")

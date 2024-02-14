@@ -5,7 +5,14 @@ class_name Player
 
 @export var SPEED = 300.0
 var HEALTH = 100
-var RESOURCES = {Global.RockType.DIRT: 0, Global.RockType.ROCK: 0, Global.RockType.IRON: 0}
+var RESOURCES = {
+	Global.RockType.DIRT: 0, 
+	Global.RockType.ROCK: 0, 
+	Global.RockType.IRON: 0, 
+	Global.RockType.COPPER: 0, 
+	Global.RockType.ALUMINUM: 0, 
+	Global.RockType.COBALT: 0
+}
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -25,7 +32,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		# TODO: use gravity project setting
-		velocity += (Vector2.ZERO - position) * 10 * delta
+		velocity += (Vector2.ZERO - position) * 2
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
@@ -33,6 +40,8 @@ func _physics_process(delta):
 		
 		if collision.get_collider() is Rock:
 			print("Player hit Rock")
+			# 1. Hit rock for damage
+			# 2. Take damage from rock
 			var rock = collision.get_collider()
 			# TODO: replace with player damage variable
 			rock.hit(1)
@@ -40,6 +49,8 @@ func _physics_process(delta):
 			if HEALTH <= 0:
 				print("Player dead")
 				SignalBus.player_dead.emit()
+		elif collision.get_collider() is Core:
+			print("Player hit Core")
 
 func _on_rock_destroyed(rock_type: Global.RockType, resource_amount: int):
 	print("Player received rock destroyed for type ", rock_type, " and amount ", resource_amount)

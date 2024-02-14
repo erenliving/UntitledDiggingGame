@@ -13,6 +13,7 @@ func _ready():
 func setRockProperties(new_rock_type: Global.RockType):
 	RESOURCE_AMOUNT = Global.RESOURCE_TABLE[new_rock_type]
 	HEALTH = Global.ROCK_HEALTH_TABLE[new_rock_type]
+	modulate = Global.ROCK_COLOR_TABLE[new_rock_type]
 
 func setRockType(new_rock_type: Global.RockType):
 	ROCK_TYPE = new_rock_type
