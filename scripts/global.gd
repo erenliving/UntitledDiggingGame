@@ -26,3 +26,11 @@ const RESOURCE_TABLE = {
 	RockType.ALUMINUM: 3, 
 	RockType.COBALT: 1
 }
+const ROCK_COLOR_TABLE = {
+	RockType.DIRT: Color.BROWN, 
+	RockType.ROCK: Color.GRAY, 
+	RockType.IRON: Color.SILVER, 
+	RockType.COPPER: Color.ORANGE_RED, 
+	RockType.ALUMINUM: Color.WHITE, 
+	RockType.COBALT: Color.BLUE
+}
