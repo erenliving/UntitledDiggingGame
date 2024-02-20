@@ -23,7 +23,7 @@ func _ready():
 func get_input():
 	look_at(get_global_mouse_position())
 	
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("left", "right", "up", "down")
 	velocity = input_dir * SPEED
 
 func _physics_process(delta):
@@ -32,7 +32,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		# TODO: use gravity project setting
-		velocity += (Vector2.ZERO - position) * 2
+		velocity += (Vector2.ZERO - position).normalized() * 10
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
