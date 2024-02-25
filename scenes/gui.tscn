@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dul6vifv84a2o"]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="ResourcesVBox" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Dirt" type="Label" parent="ScrollContainer/ResourcesVBox"]
+layout_mode = 2
+text = "Dirt: 0"
+
+[node name="Rock" type="Label" parent="ScrollContainer/ResourcesVBox"]
+layout_mode = 2
+text = "Rock: 0"
+
+[node name="Iron" type="Label" parent="ScrollContainer/ResourcesVBox"]
+layout_mode = 2
+text = "Iron: 0"
+
+[node name="Copper" type="Label" parent="ScrollContainer/ResourcesVBox"]
+layout_mode = 2
+text = "Copper: 0"
+
+[node name="Aluminum" type="Label" parent="ScrollContainer/ResourcesVBox"]
+layout_mode = 2
+text = "Aluminium: 0"
+
+[node name="Cobalt" type="Label" parent="ScrollContainer/ResourcesVBox"]
+layout_mode = 2
+text = "Cobalt: 0"
