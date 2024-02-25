@@ -15,6 +15,9 @@ var RESOURCES = {
 	Global.RockType.COBALT: 0
 }
 
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 func _ready():
 	SignalBus.rock_destroyed.connect(_on_rock_destroyed)
 
@@ -26,6 +29,7 @@ func _integrate_forces(state):
 	state.apply_force(input_dir * SPEED)
 	
 	# Gravity force
+	#TODO: Use the project settings value for gravity
 	state.apply_force((Vector2.ZERO - position).normalized() * 10)
 
 func _on_rock_destroyed(rock_type: Global.RockType, resource_amount: int):
