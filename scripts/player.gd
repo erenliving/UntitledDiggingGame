@@ -30,9 +30,8 @@ func _physics_process(delta):
 	get_input()
 	
 	# Add the gravity.
-	if not is_on_floor():
-		# TODO: use gravity project setting
-		velocity += (Vector2.ZERO - position).normalized() * 10
+	# TODO: use gravity project setting
+	velocity += (Vector2.ZERO - position).normalized() * 10
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
@@ -51,6 +50,8 @@ func _physics_process(delta):
 				SignalBus.player_dead.emit()
 		elif collision.get_collider() is Core:
 			print("Player hit Core")
+	
+	move_and_slide()
 
 func _on_rock_destroyed(rock_type: Global.RockType, resource_amount: int):
 	print("Player received rock destroyed for type ", rock_type, " and amount ", resource_amount)
