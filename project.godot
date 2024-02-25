@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://scripts/signal_bus.gd"
 LevelDefinitions="*res://scripts/level_definitions.gd"
+SmoothLookAt="*res://scripts/smooth_look_at.gd"
 
 [display]
 
