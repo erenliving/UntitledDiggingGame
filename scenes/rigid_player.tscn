@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://qbn55nn71ahj"]
+
+[ext_resource type="Script" path="res://scripts/rigid_player.gd" id="1_1ik7c"]
+[ext_resource type="Texture2D" uid="uid://exnjscm0uisw" path="res://assets/player.png" id="1_b4neo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n7sao"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5e0k6"]
+radius = 5.0
+
+[node name="RigidPlayer" type="RigidBody2D"]
+collision_mask = 6
+physics_material_override = SubResource("PhysicsMaterial_n7sao")
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_1ik7c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5e0k6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("1_b4neo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

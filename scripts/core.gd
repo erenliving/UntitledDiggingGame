@@ -12,6 +12,5 @@ class_name Core
 func _ready():
 	(collision_shape_2d.shape as CircleShape2D).radius = radius
 
-
 func _draw():
 	draw_circle(Vector2.ZERO, radius, Color.LIGHT_CORAL)
