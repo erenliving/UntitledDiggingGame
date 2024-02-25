@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://r8ljkeio1qwg"]
+[gd_scene load_steps=5 format=3 uid="uid://r8ljkeio1qwg"]
 
 [ext_resource type="Script" path="res://scripts/rock.gd" id="1_5a8og"]
 [ext_resource type="Texture2D" uid="uid://clqr5k5xdx5ao" path="res://assets/rock.png" id="1_ys683"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ppatd"]
+bounce = 0.5
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sglyr"]
 size = Vector2(10, 10)
 
-[node name="Rock" type="RigidBody2D"]
+[node name="Rock" type="StaticBody2D"]
 collision_layer = 2
-gravity_scale = 0.0
+physics_material_override = SubResource("PhysicsMaterial_ppatd")
 script = ExtResource("1_5a8og")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
