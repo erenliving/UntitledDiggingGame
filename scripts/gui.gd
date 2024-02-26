@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 
+class_name GUI
+
 signal start_game
 
 @onready var message = $Message
@@ -14,12 +16,8 @@ signal start_game
 @onready var cobalt = $ScrollContainer/ResourcesVBox/Cobalt
 
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	SignalBus.player_collected_resource.connect(update_resource)
+	SignalBus.player_dead.connect(_on_game_over)
 
 func show_message(text):
 	message.text = text
@@ -53,8 +51,12 @@ func update_resource(rock_type: Global.RockType, amount: int):
 		
 
 func _on_start_button_pressed():
+	message.hide()
 	start_button.hide()
 	start_game.emit()
 
 func _on_message_timer_timeout():
 	message.hide()
+
+func _on_game_over():
+	show_level_over()
