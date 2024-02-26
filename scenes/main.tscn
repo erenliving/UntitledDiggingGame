@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ktaca8isg8vw"]
+[gd_scene load_steps=6 format=3 uid="uid://ktaca8isg8vw"]
 
 [ext_resource type="PackedScene" uid="uid://r8ljkeio1qwg" path="res://scenes/rock.tscn" id="2_ny5hl"]
 [ext_resource type="PackedScene" uid="uid://m7bnmhbg2uft" path="res://scenes/core.tscn" id="3_qulcl"]
 [ext_resource type="Script" path="res://scripts/level_builder.gd" id="4_ly1ea"]
+[ext_resource type="PackedScene" uid="uid://dul6vifv84a2o" path="res://scenes/gui.tscn" id="5_s4gq5"]
 [ext_resource type="PackedScene" uid="uid://qbn55nn71ahj" path="res://scenes/rigid_player.tscn" id="5_y1xjo"]
 
 [node name="Main" type="Node"]
@@ -20,3 +21,5 @@ remote_path = NodePath("../../Camera2D")
 script = ExtResource("4_ly1ea")
 core_scene = ExtResource("3_qulcl")
 rock_scene = ExtResource("2_ny5hl")
+
+[node name="GUI" parent="." instance=ExtResource("5_s4gq5")]
