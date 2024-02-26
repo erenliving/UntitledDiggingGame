@@ -12,11 +12,11 @@ const DAMAGE_TABLE = {
 }
 const ROCK_HEALTH_TABLE = {
 	RockType.DIRT: 1, 
-	RockType.ROCK: 10, 
-	RockType.IRON: 50, 
-	RockType.COPPER: 50, 
-	RockType.ALUMINUM: 50, 
-	RockType.COBALT: 50
+	RockType.ROCK: 3, 
+	RockType.IRON: 8, 
+	RockType.COPPER: 10, 
+	RockType.ALUMINUM: 10, 
+	RockType.COBALT: 10
 }
 const RESOURCE_TABLE = {
 	RockType.DIRT: 5, 
